@@ -24,7 +24,7 @@ builder.Services.AddControllers();
 builder.Services.AddOpenApi();
 
 builder.Services.AddDbContext<JobTrackerDbContext>(
-    options => options.UseSqlite(
+    options => options.UseSqlServer(
         builder.Configuration.GetConnectionString(
             "DefaultConnection")));
 

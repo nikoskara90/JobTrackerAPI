@@ -1,4 +1,4 @@
-
+﻿
 using JobTracker.Domain.Entities;
 using Microsoft.EntityFrameworkCore;
 
@@ -17,32 +17,32 @@ public class JobTrackerDbContext : DbContext
     public DbSet<JobApplication> JobApplications
         => Set<JobApplication>();
 
-protected override void OnModelCreating(
-    ModelBuilder modelBuilder)
-{
-    base.OnModelCreating(modelBuilder);
-
-    modelBuilder.Entity<Company>(entity =>
+    protected override void OnModelCreating(
+        ModelBuilder modelBuilder)
     {
-        entity.HasKey(c => c.Id);
+        base.OnModelCreating(modelBuilder);
 
-        entity.Property(c => c.Name)
-            .IsRequired()
-            .HasMaxLength(200);
-    });
+        modelBuilder.Entity<Company>(entity =>
+        {
+            entity.HasKey(c => c.Id);
 
-    modelBuilder.Entity<JobApplication>(entity =>
-    {
-        entity.HasKey(a => a.Id);
+            entity.Property(c => c.Name)
+                .IsRequired()
+                .HasMaxLength(200);
+        });
 
-        entity.Property(a => a.Position)
-            .IsRequired()
-            .HasMaxLength(200);
+        modelBuilder.Entity<JobApplication>(entity =>
+        {
+            entity.HasKey(a => a.Id);
 
-        entity.HasOne<Company>()
-            .WithMany()
-            .HasForeignKey(a => a.CompanyId)
-            .OnDelete(DeleteBehavior.Restrict);
-    });
-}
+            entity.Property(a => a.Position)
+                .IsRequired()
+                .HasMaxLength(200);
+
+            entity.HasOne<Company>()
+                .WithMany()
+                .HasForeignKey(a => a.CompanyId)
+                .OnDelete(DeleteBehavior.Restrict);
+        });
+    }
 }
