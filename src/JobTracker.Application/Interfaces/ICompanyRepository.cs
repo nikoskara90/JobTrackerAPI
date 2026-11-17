@@ -7,6 +7,8 @@ public interface ICompanyRepository
 {
     Task<Company?> GetByIdAsync(Guid id);
 
+    Task<Company?> GetByIdTrackedAsync(Guid id);
+
     Task<List<Company>> GetAllAsync();
 
     Task AddAsync(Company company);

@@ -15,17 +15,20 @@ public class CompaniesController : ControllerBase
     private readonly RandomCompanyGenerator _generator;
     private readonly GetCompanyById _getCompanyById;
     private readonly GetAllCompanies _getAllCompanies;
+    private readonly UpdateCompany _updateCompany;
 
     public CompaniesController(
         CreateCompany createCompany,
         RandomCompanyGenerator generator,
         GetCompanyById getCompanyById,
-        GetAllCompanies getAllCompanies)
+        GetAllCompanies getAllCompanies,
+        UpdateCompany updateCompany)
     {
         _createCompany = createCompany;
         _generator = generator;
         _getCompanyById = getCompanyById;
         _getAllCompanies = getAllCompanies;
+        _updateCompany = updateCompany;
     }
 
     [HttpPost]
@@ -71,6 +74,25 @@ public class CompaniesController : ControllerBase
         }
 
         return Ok(company);
+    }
+
+    [HttpPut("{id:guid}")]
+    public async Task<IActionResult> Update(
+        Guid id,
+        [FromBody] UpdateCompanyRequest request)
+    {
+        var updated = await _updateCompany.ExecuteAsync(
+            id,
+            request.Name,
+            request.Website
+        );
+
+        if (!updated)
+        {
+            return NotFound();
+        }
+
+        return NoContent();
     }
 
 }

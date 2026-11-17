@@ -22,6 +22,12 @@ public class CompanyRepository : ICompanyRepository
             .FirstOrDefaultAsync(c => c.Id == id);
     }
 
+    public async Task<Company?> GetByIdTrackedAsync(Guid id)
+    {
+        return await _context.Companies
+            .FirstOrDefaultAsync(c => c.Id == id);
+    }
+
     public async Task<List<Company>> GetAllAsync()
     {
         return await _context.Companies

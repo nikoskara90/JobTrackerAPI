@@ -44,8 +44,6 @@ public class CompanyTests
         Assert.Equal("Google", company.Name);
     }
 
-
-
     [Fact]
     public void Rename_WithWhitespace_TrimsCompanyName()
     {
@@ -59,6 +57,36 @@ public class CompanyTests
         Assert.Equal("Google", company.Name);
     }
 
+    [Fact]
+    public void UpdateWebsite_ValidWebsite_UpdatesWebsite()
+    {
+        // Arrange
+        var company = new Company("Microsoft");
 
+        // Act
+        company.UpdateWebsite("https://microsoft.com");
+
+        // Assert
+        Assert.Equal(
+            "https://microsoft.com",
+            company.Website
+        );
+    }
+
+    [Fact]
+    public void UpdateWebsite_Null_ClearsWebsite()
+    {
+        // Arrange
+        var company = new Company(
+            "Microsoft", 
+            "https://microsoft.com"
+            );
+
+        // Act
+        company.UpdateWebsite(null);
+
+        // Assert
+        Assert.Null(company.Website);
+    }
 
 }

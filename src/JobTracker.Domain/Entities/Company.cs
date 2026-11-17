@@ -32,4 +32,11 @@ public class Company
         
         Name = newName.Trim();
     }
+
+
+    public void UpdateWebsite(string? newWebsite)
+    {
+        Website = newWebsite;
+    }
+
 }

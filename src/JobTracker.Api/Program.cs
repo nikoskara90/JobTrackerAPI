@@ -16,6 +16,7 @@ builder.Services.AddScoped<ICompanyRepository, CompanyRepository>();
 builder.Services.AddScoped<CreateCompany>();
 builder.Services.AddScoped<GetCompanyById>();
 builder.Services.AddScoped<GetAllCompanies>();
+builder.Services.AddScoped<UpdateCompany>();
 builder.Services.AddSingleton<RandomCompanyGenerator>();
 
 builder.Services.AddControllers();

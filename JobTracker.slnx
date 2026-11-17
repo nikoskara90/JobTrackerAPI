@@ -8,6 +8,7 @@
     <Project Path="src/Jobtracker.Application/JobTracker.Application.csproj" />
   </Folder>
   <Folder Name="/tests/">
+    <Project Path="tests/JobTracker.Application.Tests/JobTracker.Application.Tests.csproj" />
     <Project Path="tests/JobTracker.Domain.Tests/JobTracker.Domain.Tests.csproj" />
   </Folder>
 </Solution>
