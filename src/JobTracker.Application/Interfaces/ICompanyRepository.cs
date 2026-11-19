@@ -12,6 +12,10 @@ public interface ICompanyRepository
     Task<List<Company>> GetAllAsync();
 
     Task AddAsync(Company company);
-    
+
+    void Remove(Company company);
+
     Task SaveChangesAsync();
+
+
 }

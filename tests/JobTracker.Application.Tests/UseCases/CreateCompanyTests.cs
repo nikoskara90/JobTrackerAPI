@@ -1,6 +1,6 @@
 
 using JobTracker.Application.Tests.Fakes;
-using JobTracker.Application.UseCases.Companies;
+using JobTracker.Application.Companies.UseCases;
 
 namespace JobTracker.Application.Tests.UseCases;
 

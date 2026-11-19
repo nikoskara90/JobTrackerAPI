@@ -44,4 +44,9 @@ public class CompanyRepository : ICompanyRepository
     {
         await _context.SaveChangesAsync();
     }
+
+    public void Remove(Company company)
+    {
+        _context.Companies.Remove(company);
+    }
 }

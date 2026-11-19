@@ -43,4 +43,9 @@ public class FakeCompanyRepository : ICompanyRepository
 
         return Task.CompletedTask;
     }
+
+    public void Remove(Company company)
+    {
+        Companies.Remove(company);
+    }
 }

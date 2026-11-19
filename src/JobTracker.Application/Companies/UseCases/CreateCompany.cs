@@ -1,8 +1,7 @@
-
 using JobTracker.Application.Interfaces;
 using JobTracker.Domain.Entities;
 
-namespace JobTracker.Application.UseCases.Companies;
+namespace JobTracker.Application.Companies.UseCases;
 
 public class CreateCompany
 {

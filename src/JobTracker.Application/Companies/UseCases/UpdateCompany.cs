@@ -1,7 +1,6 @@
-
 using JobTracker.Application.Interfaces;
 
-namespace JobTracker.Application.UseCases.Companies;
+namespace JobTracker.Application.Companies.UseCases;
 
 public class UpdateCompany
 {

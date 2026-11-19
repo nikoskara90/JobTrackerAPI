@@ -1,5 +1,4 @@
-
-namespace JobTracker.Application.DTOs;
+namespace JobTracker.Application.Companies.DTOs;
 
 public record CompanyResponse(
     Guid Id,

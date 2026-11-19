@@ -1,8 +1,7 @@
-
-using JobTracker.Application.DTOs;
+using JobTracker.Application.Companies.DTOs;
 using JobTracker.Application.Interfaces;
 
-namespace JobTracker.Application.UseCases.Companies;
+namespace JobTracker.Application.Companies.UseCases;
 
 public class GetAllCompanies
 {

@@ -1,42 +1,25 @@
-using JobTracker.Infrastructure.Persistence;
-using Microsoft.EntityFrameworkCore;
-using JobTracker.Application.Interfaces;
-using JobTracker.Infrastructure.Repositories;
-using JobTracker.Application.Services;
-using JobTracker.Application.UseCases.Companies;
+using JobTracker.Application;
+using JobTracker.Infrastructure;
 
 var builder = WebApplication.CreateBuilder(args);
 
-// Add services to the container.
-builder.Services.AddScoped<CreateCompany>();
-builder.Services.AddSingleton<RandomCompanyGenerator>();
-builder.Services.AddScoped<ICompanyRepository, CompanyRepository>();
+// API services
 builder.Services.AddControllers();
-builder.Services.AddScoped<ICompanyRepository, CompanyRepository>();
-builder.Services.AddScoped<CreateCompany>();
-builder.Services.AddScoped<GetCompanyById>();
-builder.Services.AddScoped<GetAllCompanies>();
-builder.Services.AddScoped<UpdateCompany>();
-builder.Services.AddSingleton<RandomCompanyGenerator>();
-
-builder.Services.AddControllers();
-// Learn more about configuring OpenAPI at https://aka.ms/aspnet/openapi
 builder.Services.AddOpenApi();
 
-builder.Services.AddDbContext<JobTrackerDbContext>(
-    options => options.UseSqlServer(
-        builder.Configuration.GetConnectionString(
-            "DefaultConnection")));
+// Clean Architecture registrations
+builder.Services.AddApplication();
+builder.Services.AddInfrastructure(builder.Configuration);
 
 var app = builder.Build();
 
-// Configure the HTTP request pipeline.
+// HTTP request pipeline
 if (app.Environment.IsDevelopment())
 {
     app.MapOpenApi();
 }
 
-//app.UseHttpsRedirection();
+// app.UseHttpsRedirection();
 
 app.UseAuthorization();
 

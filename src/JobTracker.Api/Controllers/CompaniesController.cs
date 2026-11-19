@@ -1,8 +1,8 @@
 
 using JobTracker.Api.DTOs;
+using JobTracker.Application.Companies.UseCases;
 using JobTracker.Application.Interfaces;
 using JobTracker.Application.Services;
-using JobTracker.Application.UseCases.Companies;
 using Microsoft.AspNetCore.Mvc;
 
 namespace JobTracker.Api.Controllers;
@@ -16,19 +16,22 @@ public class CompaniesController : ControllerBase
     private readonly GetCompanyById _getCompanyById;
     private readonly GetAllCompanies _getAllCompanies;
     private readonly UpdateCompany _updateCompany;
+    private readonly DeleteCompany _deleteCompany;
 
     public CompaniesController(
         CreateCompany createCompany,
         RandomCompanyGenerator generator,
         GetCompanyById getCompanyById,
         GetAllCompanies getAllCompanies,
-        UpdateCompany updateCompany)
+        UpdateCompany updateCompany,
+        DeleteCompany deleteCompany)
     {
         _createCompany = createCompany;
         _generator = generator;
         _getCompanyById = getCompanyById;
         _getAllCompanies = getAllCompanies;
         _updateCompany = updateCompany;
+        _deleteCompany = deleteCompany;
     }
 
     [HttpPost]
@@ -88,6 +91,19 @@ public class CompaniesController : ControllerBase
         );
 
         if (!updated)
+        {
+            return NotFound();
+        }
+
+        return NoContent();
+    }
+
+    [HttpDelete("{id:guid}")]
+    public async Task<IActionResult> Delete(Guid id)
+    {
+        var deleted = await _deleteCompany.ExecuteAsync(id);
+
+        if (!deleted)
         {
             return NotFound();
         }
